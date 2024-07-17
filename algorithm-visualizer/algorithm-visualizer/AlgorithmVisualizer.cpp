@@ -3,38 +3,47 @@
 #include <iostream>
 
 AlgorithmVisualizer::AlgorithmVisualizer() : currentAlgorithm(Algorithm::BubbleSort), sorted(false) {
-	initializeData();
+    initializeData();
 }
 
 void AlgorithmVisualizer::initializeData() {
-	data = { 150, 100, 200, 50, 250, 75, 125, 175 };
-	sorted = false;
+    data = { 150, 100, 200, 50, 250, 75, 125, 175 };
+    sorted = false;
 }
 
 void AlgorithmVisualizer::setAlgorithm(Algorithm algo) {
-	currentAlgorithm = algo;
-	initializeData();
+    currentAlgorithm = algo;
+    initializeData();
 }
 
 void AlgorithmVisualizer::update() {
-	if (!sorted) {
-		switch (currentAlgorithm) {
-		case Algorithm::BubbleSort:
-			bubbleSortStep();
-			break;
-		case Algorithm::QuickSort:
-			quickSortStep();
-			break;
-		case Algorithm::InsertionSort:
-			insertionSortStep();
-			break;
-		case Algorithm::SelectionSort:
-			selectionSortStep();
-			break;
-		}
-	}
+    if (!sorted) {
+        switch (currentAlgorithm) {
+        case Algorithm::BubbleSort:
+            bubbleSortStep();
+            break;
+        case Algorithm::QuickSort:
+            quickSortStep();
+            break;
+        case Algorithm::InsertionSort:
+            insertionSortStep();
+            break;
+        case Algorithm::SelectionSort:
+            selectionSortStep();
+            break;
+        }
+    }
 }
 
+void AlgorithmVisualizer::render(sf::RenderWindow& window) {  // Á¤ÀÇ
+    for (size_t i = 0; i < data.size(); ++i) {
+        sf::RectangleShape rect;
+        rect.setSize(sf::Vector2f(20, data[i]));
+        rect.setPosition(i * 25 + 50, window.getSize().y - data[i] - 50);
+        rect.setFillColor(sf::Color::White);
+        window.draw(rect);
+    }
+}
 
 void AlgorithmVisualizer::bubbleSortStep() {
     static size_t i = 0, j = 0;

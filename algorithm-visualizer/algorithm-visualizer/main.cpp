@@ -2,11 +2,10 @@
 #include "AlgorithmVisualizer.h"
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Algorithm Visualizer");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Algorithm Visualizer");
 
-	AlgorithmVisualizer visualizer;
-	visualizer.setAlgorithm(Algorithm::BubbleSort);
-
+    AlgorithmVisualizer visualizer;
+    visualizer.setAlgorithm(Algorithm::BubbleSort);  // 초기 알고리즘 설정
 
     while (window.isOpen()) {
         sf::Event event;
